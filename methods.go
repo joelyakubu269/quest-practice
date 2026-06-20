@@ -6,7 +6,7 @@ import (
 )
 
 type Shape interface {
-	Area() float64
+	//Area() float64
 	Perimeter() float64
 }
 type Triangle struct {
