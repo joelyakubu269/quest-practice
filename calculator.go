@@ -54,13 +54,23 @@ func GetUserInput() {
 			fmt.Println("input cannot be empty")
 			continue
 		}
-		val, ok := Type["input"]
+		val, ok := Type[input]
 		if ok {
+			switch val[0] {
+			case "Circle":
+
+			}
 			fmt.Printf("please enter the %v\n: ", val[0])
-			input, _ = reader.ReadString('\n')
-			input = strings.TrimSpace(input)
 
 		}
 	}
 }
 func ShapeCal(val []Shape) {}
+
+func ValidateInput() (string, error) {
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input)
+	if input == "" {
+		return "input cannot be empty", nil
+	}
+}
