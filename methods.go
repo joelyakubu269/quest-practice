@@ -1,9 +1,13 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 type Shape interface {
 	Area() float64
+	Perimeter() float64
 }
 type Triangle struct {
 	Base   float64
@@ -26,22 +30,23 @@ func (p Circle) Perimeter() float64 {
 	return math.Pi * 2 * p.Radius
 }
 
-type Perimeter interface {
-	Perimeter() float64
-}
-
-func PrintAreas(shapes []Shape) float64 {
+func PrintAreas(shapes []Shape) (float64, float64) {
 	totalArea := 0.0
-	for _, s := range shapes {
-		totalArea += s.Area()
-	}
-	return totalArea
-}
-func PrintPerimeters(shapes []Perimeter) float64 {
 	totalPerimeter := 0.0
 	for _, s := range shapes {
+		totalArea += s.Area()
 		totalPerimeter += s.Perimeter()
 	}
-	return totalPerimeter
+
+	return totalArea, totalPerimeter
+}
+
+func main() {
+	shapes := []Shape{
+		Triangle{Base: 20, Height: 30},
+		Circle{Radius: 25},
+	}
+
+	fmt.Println(PrintAreas(shapes))
 
 }
