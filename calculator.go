@@ -36,9 +36,9 @@ type Rectangle struct {
 }
 
 var Type = map[string][]string{
-	"1": {"Radius"},
-	"2": "Triangle",
-	"3": "Rectangle",
+	"1": {"Circle", "Radius"},
+	"2": {"Triangle", "Base", "Height"},
+	"3": {"Rectangle", "Length", "Breadth"},
 }
 
 func (p Rectangle) Area() float64 {
@@ -56,7 +56,10 @@ func GetUserInput() {
 		}
 		val, ok := Type["input"]
 		if ok {
-			fmt.Printf()
+			fmt.Printf("please enter the %v\n: ", val[0])
+			input, _ = reader.ReadString('\n')
+			input = strings.TrimSpace(input)
+
 		}
 	}
 }
