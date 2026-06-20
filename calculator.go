@@ -46,7 +46,7 @@ var Type = map[string][]string{
 func (p Rectangle) Area() float64 {
 	return p.Breadth * p.Length
 }
-func GetUserInput() {
+func GetUserInput() float64 {
 	fmt.Println("welcome Enter the shapes you wish to calculate their Areas")
 	for {
 		fmt.Println("1: for Circle, 2:for Triangle,3:for rectangle,: ")
@@ -92,6 +92,12 @@ func GetUserInput() {
 				AddShape(Rectangle{Length: num, Breadth: num2})
 			}
 
+		}
+		fmt.Println("Do you wish to continue (yes/no): ")
+		input, _ = reader.ReadString('\n')
+		input = strings.ToLower(strings.TrimSpace(input))
+		if input == "no" {
+			return ShapeCal(shapes)
 		}
 	}
 }
