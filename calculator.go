@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -32,4 +33,9 @@ type Rectangle struct {
 func (p Rectangle) Area() float64 {
 	return p.Breadth * p.Length
 }
-func ShapeCal(val []Shape)
+func GetUserInput() {
+	fmt.Println("welcome Enter the shapes you wish to calculate their Areas")
+	fmt.Println("1: for Circle, 2:for Triangle,3:for rectangle,")
+	fmt.Println("you may enter more than one number if you wish")
+}
+func ShapeCal(val []Shape) {}
