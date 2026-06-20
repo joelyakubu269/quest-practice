@@ -37,7 +37,7 @@ type Rectangle struct {
 	Breadth float64
 }
 
-var Type = map[string][]string{
+var types = map[string][]string{
 	"1": {"Circle", "Radius"},
 	"2": {"Triangle", "Base", "Height"},
 	"3": {"Rectangle", "Length", "Breadth"},
@@ -56,7 +56,11 @@ func GetUserInput() float64 {
 			fmt.Println("input cannot be empty")
 			continue
 		}
-		val, ok := Type[input]
+		val, ok := types[input]
+		if !ok {
+			fmt.Println("Invalid option.")
+			continue
+		}
 		if ok {
 			switch val[0] {
 			case "Circle":
@@ -97,11 +101,11 @@ func GetUserInput() float64 {
 		input, _ = reader.ReadString('\n')
 		input = strings.ToLower(strings.TrimSpace(input))
 		if input == "no" {
-			return ShapeCal(shapes)
+			return TotalArea(shapes)
 		}
 	}
 }
-func ShapeCal(val []Shape) float64 {
+func TotalArea(val []Shape) float64 {
 	totalArea := 0.0
 	for _, s := range val {
 		totalArea += s.Area()
@@ -120,4 +124,7 @@ func ConvertInput() (float64, error) {
 }
 func AddShape(s Shape) {
 	shapes = append(shapes, s)
+}
+func main() {
+	fmt.Println(GetUserInput())
 }
