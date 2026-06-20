@@ -1,9 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
+	"os"
+	"strings"
 )
+
+var reader = bufio.NewReader(os.Stdin)
 
 type Shape interface {
 	Area() float64
@@ -30,12 +35,29 @@ type Rectangle struct {
 	Breadth float64
 }
 
+var Type = map[string][]string{
+	"1": {"Radius"},
+	"2": "Triangle",
+	"3": "Rectangle",
+}
+
 func (p Rectangle) Area() float64 {
 	return p.Breadth * p.Length
 }
 func GetUserInput() {
 	fmt.Println("welcome Enter the shapes you wish to calculate their Areas")
-	fmt.Println("1: for Circle, 2:for Triangle,3:for rectangle,")
-	fmt.Println("you may enter more than one number if you wish")
+	for {
+		fmt.Println("1: for Circle, 2:for Triangle,3:for rectangle,: ")
+		input, _ := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
+		if input == "" {
+			fmt.Println("input cannot be empty")
+			continue
+		}
+		val, ok := Type["input"]
+		if ok {
+			fmt.Printf()
+		}
+	}
 }
 func ShapeCal(val []Shape) {}
