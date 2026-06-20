@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"strconv"
 	"strings"
 )
 
+var shapes = []Shape{}
 var reader = bufio.NewReader(os.Stdin)
 
 type Shape interface {
@@ -58,19 +60,52 @@ func GetUserInput() {
 		if ok {
 			switch val[0] {
 			case "Circle":
-
+				fmt.Printf("please enter the %v\n: ", val[1])
+				num, err := ConvertInput()
+				if err != nil {
+					continue
+				}
+				AddShape(Circle{Radius: num})
+			case "Triangle":
+				fmt.Printf("please enter the %v\n: ", val[1])
+				num, err := ConvertInput()
+				if err != nil {
+					continue
+				}
+				fmt.Printf("please enter the %v\n: ", val[2])
+				num2, err := ConvertInput()
+				if err != nil {
+					continue
+				}
+				AddShape(Triangle{Base: num, Height: num2})
+			case "Rectangle":
+				fmt.Printf("please enter the %v\n: ", val[1])
+				num, err := ConvertInput()
+				if err != nil {
+					continue
+				}
+				fmt.Printf("please enter the %v\n: ", val[2])
+				num2, err := ConvertInput()
+				if err != nil {
+					continue
+				}
+				AddShape(Rectangle{Length: num, Breadth: num2})
 			}
-			fmt.Printf("please enter the %v\n: ", val[0])
 
 		}
 	}
 }
 func ShapeCal(val []Shape) {}
 
-func ValidateInput() (string, error) {
+func ConvertInput() (float64, error) {
 	input, _ := reader.ReadString('\n')
 	input = strings.TrimSpace(input)
-	if input == "" {
-		return "input cannot be empty", nil
+	num, err := strconv.ParseFloat(input, 64)
+	if err != nil {
+		return 0, err
 	}
+	return num, nil
+}
+func AddShape(s Shape) {
+	shapes = append(shapes, s)
 }
