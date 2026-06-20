@@ -95,7 +95,13 @@ func GetUserInput() {
 		}
 	}
 }
-func ShapeCal(val []Shape) {}
+func ShapeCal(val []Shape) float64 {
+	totalArea := 0.0
+	for _, s := range val {
+		totalArea += s.Area()
+	}
+	return totalArea
+}
 
 func ConvertInput() (float64, error) {
 	input, _ := reader.ReadString('\n')
